@@ -169,6 +169,41 @@ div{
 #edit-form{
 	display: none;
 }
+footer{
+	position: absolute;
+	top: 130%;
+	left: 50%;
+	text-align: center;
+	transform: translate(-50%,-50%);
+	width: 100%;
+	font-size: 2em;
+	padding-bottom: 50px;
+	padding-top: 50px;
+	border-top: 2px solid black;
+}
+.anime{
+	animation: change-of-colors 3s ease-in-out 0s infinite;
+}
+@keyframes change-of-colors{
+	0%{
+		color: green;
+	}
+	25%{
+		color: red;
+	}
+	50%{
+		color: blue;
+	}
+	70%{
+		color: navy;
+	}
+	95%{
+		color: lime;
+	}
+	100%{
+		color: green;
+	}
+}
 /*
 
 	Colors:
