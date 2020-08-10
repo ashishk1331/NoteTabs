@@ -1,6 +1,8 @@
 $('#message-bar').hide();
-var characterForTabs = ['#','@'];//['#','@','%','$','&','*','~','➰','🌵','❓','♈'];
+var characterForTabs = ['#','@','%','$','&','*','~','➰','🌵','❓','♈'];
 var charlen = 1;
+var editCode =0;
+
 $('li > h3').css('backgroundColor', '#90E000');
 $('li > p').show();
 
@@ -26,7 +28,7 @@ $('#add-button').on('click', function(event) {
 	}
 });
 
-$('form > button').on('click', function(event) {
+$('#add-form > button').on('click', function(event) {
 	event.preventDefault();
 	var len = $('li').length;
 	var text = $('textarea').val();
@@ -38,7 +40,7 @@ $('form > button').on('click', function(event) {
 	}
 	else if(len < characterForTabs.length && text.trim().length >= 1)
 	{
-		var $li = $('<li><h3>'+characterForTabs[len]+'</h3><p>'+text+'<a href="#" id="delete">delete</a></p></li>');
+		var $li = $('<li><h3>'+characterForTabs[len]+'</h3><p>'+text+'<code><a href="#" id="edit">edit</a><a href="#" id="delete">delete</a></code></p></li>');
 		$('ul').append($li);
 		$('textarea').val('');
 		$('form').fadeOut(200);
@@ -58,10 +60,31 @@ $('form > button').on('click', function(event) {
 
 $('ul').on('click','#delete', function(event) {
 	event.preventDefault();
-	var $theLi = $(this).parent('p').parent('li');
+	var $theLi = $(this).parent('code').parent('p').parent('li');
 	$theLi.remove();
 });
 
+
+$('ul').on('click', '#edit', function(event) {
+	event.preventDefault();
+	var $p = $(this).parent('code').parent('p');
+	$('li').each(function(index, el) {
+		$(this).find('p').hide();
+		$(this).find('h3').css('backgroundColor', 'gray');
+	});
+	$p.parent('li').children('h3').css('backgroundColor', '#90E000');
+	$('#edit-form').fadeIn(200);
+	var text = $(this).parent('code').parent('p').text();
+	text = text.trim().replace("edit","").replace("delete","").replace("    ","").trim();
+	$('#edit-form > textarea').val(text);
+	$('#edit-form > button').on('click', function(event) {
+		event.preventDefault();
+		var newText = $('#edit-form > textarea').val();
+		$p.html(newText+'<code><a href="#" id="edit">edit</a><a href="#" id="delete">delete</a></code>');
+	$('#edit-form').fadeOut(200);
+	$p.show();
+	});
+});
 
 $(document).on('click','h3', function(event) {
 	event.preventDefault();
@@ -129,3 +152,4 @@ $('li').on('click', function(event) {
 	}
 });
 */
+

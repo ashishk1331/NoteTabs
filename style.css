@@ -74,11 +74,13 @@ p{
 	font-weight: bolder;
 	font-size: 1.5em;
 }
-p > a{
+p > code{
 	position: absolute;
 	top: 90%;
 	left: 40%;
-	color: red;
+}
+#edit{
+	margin-right: 10px;
 }
 form{
 	z-index: 1;
@@ -140,7 +142,7 @@ div{
 #outer-space{
 	z-index: -9;
 	position: absolute;
-	top: 40%;
+	top: 20%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	background-color: transparent;
@@ -162,6 +164,10 @@ div{
 		color: rgba(0, 0, 0, 0.0);
 		letter-spacing: 5px;
 	}
+}
+
+#edit-form{
+	display: none;
 }
 /*
 
